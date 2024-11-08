@@ -2,6 +2,35 @@
 
 Minify photos with simple API
 
+# Attention! Version 0.1.0 works only with iOS
+
+# Usage
+
+Check example project in project's repository:
+
+1. Call the `compress` method:
+```js
+const compressed = await ExpoImageCompressor.compress(
+  imagePath,
+  0.25
+);
+```
+2. Listen for events:
+```js
+useEffect(() => {
+  const listen = ExpoImageCompressor.addChangeListener((val) => {
+    if (val.status === "compressing" && val.fileSize) {
+      console.log("fileSize initial", val.fileSize);
+    } else if (val.status === "success") {
+      setCompressed(`file://${val.data}`);
+      console.log("fileSize final", val.fileSize);
+    }
+  });
+
+  return () => listen.remove();
+}, [ExpoImageCompressor]);
+  ```
+
 # API documentation
 
 - [Documentation for the main branch](https://github.com/expo/expo/blob/main/docs/pages/versions/unversioned/sdk/image-compressor.md)
