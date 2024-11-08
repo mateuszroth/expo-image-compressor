@@ -1,5 +1,7 @@
 export type ChangeEventPayload = {
-  value: string;
+  status: string;
+  data: string;
+  fileSize?: number;
 };
 
 export type ExpoImageCompressorViewProps = {
